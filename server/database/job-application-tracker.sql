@@ -10,10 +10,10 @@ CREATE TABLE users (
 CREATE TABLE applications (
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
-    company VARCHAR(100),
-    position VARCHAR(100),
-    status VARCHAR(50),
+    company VARCHAR(100) NOT NULL,
+    position VARCHAR(100) NOT NULL,
+    status VARCHAR(50) NOT NULL,
     notes TEXT,
-    applied_at DATE,
+    applied_at DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
