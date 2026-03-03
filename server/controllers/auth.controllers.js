@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
-
 dotenv.config();
 
 export const register = async (req, res) => {
@@ -48,19 +47,18 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  
-  if(!email || !password){
+
+  if (!email || !password) {
     return res.status(400).json({
-        message: "Email and password required!"
+      message: "Email and password required!",
     });
   }
 
   try {
     //check if email doenst exist in db
-    const userExists = await pool.query("SELECT * FROM users WHERE email=$1", 
-        [email]
-    );
-    
+    const userExists = await pool.query("SELECT * FROM users WHERE email=$1", [
+      email,
+    ]);
 
     if (userExists.rows.length === 0) {
       return res.status(404).json({
@@ -71,7 +69,6 @@ export const login = async (req, res) => {
     // email exists
     const user = userExists.rows[0];
     console.log(user);
-    
 
     //compare passwords
 
@@ -108,7 +105,13 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: false,
+  });
+
   res.json({
-    message: "Logout controller working",
+    message: "Logout successful!",
   });
 };
