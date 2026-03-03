@@ -1,6 +1,8 @@
 import pool from "../database/db.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+
 
 dotenv.config();
 
@@ -43,11 +45,66 @@ export const register = async (req, res) => {
   }
 };
 
+export const login = async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  
+  if(!email || !password){
+    return res.status(400).json({
+        message: "Email and password required!"
+    });
+  }
 
-export const login = (req, res) => {
-  res.json({
-    message: "Login controller working",
-  });
+  try {
+    //check if email doenst exist in db
+    const userExists = await pool.query("SELECT * FROM users WHERE email=$1", 
+        [email]
+    );
+    
+
+    if (userExists.rows.length === 0) {
+      return res.status(404).json({
+        message: "User doens't exist!",
+      });
+    }
+
+    // email exists
+    const user = userExists.rows[0];
+    console.log(user);
+    
+
+    //compare passwords
+
+    const comparePasswords = await bcrypt.compare(password, user.password);
+
+    if (comparePasswords) {
+      //generate JWT
+      const token = jwt.sign(
+        { id: user.id, email: user.email },
+        process.env.JWT_SECRET,
+        { expiresIn: "1d" },
+      );
+
+      //send cookie
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+      });
+
+      res.json({
+        message: "Login successful",
+      });
+    } else {
+      return res.status(401).json({
+        message: "Wrong credentials!",
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      message: "Server error!",
+    });
+  }
 };
 
 export const logout = (req, res) => {
