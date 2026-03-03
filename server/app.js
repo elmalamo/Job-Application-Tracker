@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(
 );
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 
