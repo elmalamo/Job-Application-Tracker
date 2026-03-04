@@ -55,7 +55,7 @@ export const login = async (req, res) => {
   }
 
   try {
-    //check if email doenst exist in db
+    //check if email doesnt exist in db
     const userExists = await pool.query("SELECT * FROM users WHERE email=$1", [
       email,
     ]);
@@ -114,4 +114,32 @@ export const logout = (req, res) => {
   res.json({
     message: "Logout successful!",
   });
+};
+
+
+export const getLoggedInUser = async (req, res) => {
+
+  const userId = req.user.id;
+
+  try{
+
+    const user = await pool.query("SELECT id, first_name, last_name, email FROM users WHERE id=$1",[userId]);
+
+    //check if user exists
+    if(user.rows.length === 0){
+      return res.status(404).json({
+        message: "User not found!"
+      });
+    }
+
+    //if exists get user info
+    res.json(user.rows[0]);
+
+
+  }catch(err){
+    res.status(500).json({
+      message: "Server error!"
+    });
+  }
+
 };
