@@ -46,7 +46,7 @@ function AppHeader() {
             justifyContent: "space-between",
             width: "100%"
         }}>
-          <Typography variant="h5" component="div">
+          <Typography variant="h5" component="div" sx={{paddingLeft: "20px"}}>
             ElMalamo's Job Application Tracker
           </Typography>
 
@@ -57,6 +57,7 @@ function AppHeader() {
             aria-haspopup="true"
             onClick={handleMenu}
             color="inherit"
+            sx={{paddingRight: "20px"}}
           >
             <AccountCircle />
           </IconButton>
