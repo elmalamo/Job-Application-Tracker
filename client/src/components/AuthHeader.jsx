@@ -1,7 +1,7 @@
 import React from "react";
-import "./Header.css";
+import "./AuthHeader.css";
 
-function Header() {
+function AuthHeader() {
   return (
     <header>
       <h1>ElMalamo's Job Application Tracker</h1>
@@ -10,4 +10,4 @@ function Header() {
 }
 
 
-export default Header;
+export default AuthHeader;

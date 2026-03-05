@@ -1,11 +1,13 @@
-import Header from "../components/Header";
+import AppHeader from "../components/AppHeader";
 import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
 
-const Layout = () => {
+import "./AuthLayout.css";
+
+function AppLayout(){
   return (
     <div className="app-container">
-      <Header />
+      <AppHeader />
       <main className="main-content">
         <Outlet />
       </main>
@@ -14,4 +16,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default AppLayout;
