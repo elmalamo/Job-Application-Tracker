@@ -3,36 +3,41 @@ import { useAuth } from "../auth/AuthContext";
 import InputField from "../components/InputField";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Login.css";
 
-const Register = () => {
-  const { user, error, login, logout } = useAuth();
+function Register(){
+  const { user, error, register, login } = useAuth();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const loggedIn = await login({ email, password });
+  const navigate = useNavigate();
 
+  const handleRegister = async (event) => {
+    event.preventDefault();
+
+    try {
+      await register({ firstName, lastName, email, password });
+
+      //if registration is successful
+      await login({ email, password });
+
+      //if login successful
+      navigate("/", { replace: true });
+
+    } catch (err) {
+      //else catch the error
+      console.log("Auth failed:", err);
+    }
   };
-
-  if (user) {
-    return (
-      <div>
-        <h2>Welcome, {user.first_name}!</h2>
-        <button onClick={logout}>Logout</button>
-      </div>
-    );
-  }
 
   return (
     <div className="container">
       <div className="login-container">
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleRegister}>
           <h2>Εγγραφή</h2>
           <InputField
             required={true}
@@ -69,7 +74,7 @@ const Register = () => {
           <Button variant="contained" type="submit" size="large">
             Εγγραφη
           </Button>
-          {error && <p style={{ color: "red" }}>{error}</p>}
+          {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
 
           <Divider className="divider" />
           <p>

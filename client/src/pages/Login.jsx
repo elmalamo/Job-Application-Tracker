@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { Link, replace, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
@@ -18,8 +18,6 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
-    console.log({ email, password });
 
     try {
       await login({ email, password });
