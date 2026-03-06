@@ -13,9 +13,9 @@ function ApplicationCard(props) {
   return (
     <Card className="card-box">
       <CardContent>
-        <h3>{props.app.position}</h3>
-        <h3>{props.app.company}</h3>
-        <h4>{props.app.location}</h4>
+        <h3 className="application-preview">{props.app.position}</h3>
+        <p className="application-preview">στη</p>
+        <h3 className="application-preview">{props.app.company}</h3>
       </CardContent>
       <CardActions sx={{ justifyContent: "flex-end" }}>
         <IconButton

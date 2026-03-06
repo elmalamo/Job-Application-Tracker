@@ -1,10 +1,11 @@
 .board-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  /* gap: 1rem; */
   border: black solid 2px;
   background-color: antiquewhite;
-  padding-bottom: 30px;
   margin-left: 20px;
   margin-right: 20px;
+  height: calc(100vh - 205px);
+  overflow: hidden;
 }
