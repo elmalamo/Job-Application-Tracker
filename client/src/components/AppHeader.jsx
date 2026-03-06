@@ -10,17 +10,13 @@ import MenuItem from "@mui/material/MenuItem";
 import { useAuth } from "../auth/AuthContext";
 import apiClient from "../api/apiClient";
 import { useNavigate } from "react-router-dom";
-import { flexGrow } from "@mui/system";
+import "./AppHeader.css";
 
 function AppHeader() {
   const { user, logout } = useAuth();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const navigate = useNavigate();
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -38,9 +34,10 @@ function AppHeader() {
       console.log("Erro while logout", err);
     }
   };
+
+
   return (
-    <header>
-      <AppBar position="sticky">
+      <AppBar position="sticky" className="header" sx={{backgroundColor: "#0f2f2e"}}>
         <Toolbar sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -80,7 +77,6 @@ function AppHeader() {
           </Menu>
         </Toolbar>
       </AppBar>
-    </header>
   );
 }
 
