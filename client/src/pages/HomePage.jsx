@@ -5,7 +5,7 @@ import StatusBoard from "../components/StatusBoard";
 import apiClient from "../api/apiClient";
 import "./HomePage.css";
 import Button from "@mui/material/Button";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 
 function HomePage() {
   const { user, logout } = useAuth();
@@ -40,8 +40,8 @@ function HomePage() {
         <h1 className="heading">
           Οι αιτήσεις σου, {user.first_name} {user.last_name}!
         </h1>
-        <Button variant="contained" className="add-button" startIcon={<AddIcon fontSize="small"/>} size="medium">
-          Προσθηκη
+        <Button variant="contained" className="add-button">
+          <AddIcon /> Προσθηκη
         </Button>
       </div>
       <StatusBoard applications={applications} onDelete={handleDelete} />
