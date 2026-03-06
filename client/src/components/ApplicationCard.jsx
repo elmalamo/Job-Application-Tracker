@@ -5,11 +5,13 @@ import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import CardActions from "@mui/material/CardActions";
-import apiClient from "../api/apiClient";
+import "./ApplicationCard.css";
+
+
 
 function ApplicationCard(props) {
   return (
-    <Card>
+    <Card className="card-box">
       <CardContent>
         <h3>{props.app.position}</h3>
         <h3>{props.app.company}</h3>

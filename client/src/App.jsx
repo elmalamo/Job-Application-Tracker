@@ -5,7 +5,7 @@ import { useAuth } from "./auth/AuthContext";
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Board from "./pages/Board";
+import HomePage from "./pages/HomePage";
 import AppLayout from "./layouts/AppLayout";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
       {/* protected routes(it gets in protectedroute first) */}
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
-          <Route path="/" element={<Board />} />
+          <Route path="/" element={<HomePage />} />
         </Route>
       </Route>
     </Routes>

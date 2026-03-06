@@ -3,8 +3,11 @@ import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import StatusBoard from "../components/StatusBoard";
 import apiClient from "../api/apiClient";
+import "./HomePage.css";
+import Button from "@mui/material/Button";
+import AddIcon from '@mui/icons-material/Add';
 
-function Board() {
+function HomePage() {
   const { user, logout } = useAuth();
   const [applications, setApplications] = useState([]);
 
@@ -33,12 +36,17 @@ function Board() {
 
   return (
     <div>
-      <h1>
-        Οι αιτήσεις σου, {user.first_name} {user.last_name}!
-      </h1>
+      <div className="home-page-container">
+        <h1 className="heading">
+          Οι αιτήσεις σου, {user.first_name} {user.last_name}!
+        </h1>
+        <Button variant="contained" className="add-button" startIcon={<AddIcon fontSize="small"/>} size="medium">
+          Προσθηκη
+        </Button>
+      </div>
       <StatusBoard applications={applications} onDelete={handleDelete} />
     </div>
   );
 }
 
-export default Board;
+export default HomePage;

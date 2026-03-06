@@ -1,5 +1,6 @@
 import React from "react";
 import ApplicationCard from "./ApplicationCard";
+import "./BoardColumn.css";
 
 function BoardColumn(props) {
 
