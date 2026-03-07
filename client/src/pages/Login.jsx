@@ -49,7 +49,6 @@ function Login() {
             size="small"
             onChange={(event) => setEmail(event.target.value)}
           />
-          <label htmlFor="pass"></label>
           <InputField
             required={false}
             label="Κωδικός Πρόσβασης"
