@@ -6,73 +6,80 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import StatusSelectField from "./StatusSelectField";
 import WorkModeSelectField from "./WorkModeSelectField";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
+import "./ApplicationForm.css";
+import { FormLabel } from "@mui/material";
 
-function ApplicationForm() {
-  // //get current date in yyyy/mm/dd format
-  // const date = new Date().toISOString().split("T")[0];
-
-  const [position, setPosition] = useState("");
-  const [company, setCompany] = useState("");
-  const [location, setLocation] = useState("");
-  const [workMode, setWorkMode] = useState("Onsite");
-  const [notes, setNotes] = useState("");
-   const [appliedAt, setAppliedAt] = useState(dayjs());
-  const [status, setStatus] = useState("Applied");
-
-  function handleStatusChange(event){
+function ApplicationForm(props) {
+  function handleStatusChange(event) {
     setStatus(event.target.value);
   }
 
-    function handleWorkModeChange(event){
+  function handleWorkModeChange(event) {
     setWorkMode(event.target.value);
   }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <form action="">
-        <div>
+        <div className="form-container">
           <InputField
             required={true}
             label="Ρόλος"
             type="text"
-            value={position}
+            value={props.formData.position}
             size="small"
-            //   onChange={(event) => setEmail(event.target.value)}
+            sx={{ paddingTop: "10px" }}
+            onChange={(event) =>
+              props.changeValues({ ...props.formData, position: event.target.value })
+            }
           />
           <InputField
             required={true}
-            label="company"
+            label="Εταιρεία"
             type="text"
-            value={company}
+            value={props.formData.company}
             size="small"
-            //   onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) =>
+              props.changeValues({ ...props.formData, company: event.target.value })
+            }
           />
           <InputField
-            required={true}
-            label="location"
+            label="Περιοχή"
             type="text"
-            value={location}
+            value={props.formData.location}
             size="small"
-            //   onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) =>
+              props.changeValues({ ...props.formData, location: event.target.value })
+            }
           />
-          <StatusSelectField value={status} onChange={handleStatusChange}/>
-          <WorkModeSelectField value={workMode} onChange={handleWorkModeChange}/>
-          <InputField
-            required={true}
-            label="notes"
-            type="select"
-            value={notes}
-            size="small"
-            //   onChange={(event) => setEmail(event.target.value)}
+          <DatePicker
+            label="Ημερομηνία αίτησης"
+            value={props.formData.appliedAt}
+            onChange={(event) =>
+              props.changeValues({ ...props.formData, appliedAt: event.target.value })
+            }
           />
-        <DatePicker
-          label="Controlled picker"
-          value={appliedAt}
-          onChange={(newDate) => setAppliedAt(newDate)}
-        />
+          <StatusSelectField
+            value={props.formData.status}
+            onChange={props.changeValues}
+          />
+          <WorkModeSelectField
+            value={props.formData.workMode}
+            onChange={props.changeValues}
+          />
+          <div className="textarea-container">
+            <FormLabel>Παρατηρήσεις</FormLabel>
+            <TextareaAutosize
+              minRows={4}
+              placeholder="Σημειώστε τις παρατηρήσεις σας εδώ"
+              style={{ width: "100%" }}
+              value={props.formData.notes}
+              onChange={(event) =>
+                props.changeValues({ ...props.formData, notes: event.target.value })
+              }
+            />
+          </div>
         </div>
-        <div></div>
-      </form>
     </LocalizationProvider>
   );
 }

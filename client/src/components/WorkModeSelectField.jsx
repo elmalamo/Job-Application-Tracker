@@ -7,17 +7,19 @@ import Select from '@mui/material/Select';
 function WorkModeSelectField(props) {
   return (
     <div>
-      <InputLabel id="demo-simple-select-label">Work Mode</InputLabel>
+      <InputLabel id="demo-simple-select-label">Τρόπος εργασίας</InputLabel>
       <Select
         labelId="work-mode-select-label"
         id="work-mode-select"
         value={props.value}
         label="Work Mode"
-        onChange={props.onChange}
+         onChange={(event) =>
+              props.onChange({ ...props.formData, workMode: event.target.value })
+            }
       >
-        <MenuItem value={"Onsite"}>Onsite</MenuItem>
-        <MenuItem value={"Remote"}>Remote</MenuItem>
-        <MenuItem value={"Hybrid"}>Hybrid</MenuItem>
+        <MenuItem value={"onsite"}>Onsite</MenuItem>
+        <MenuItem value={"remote"}>Remote</MenuItem>
+        <MenuItem value={"hybrid"}>Hybrid</MenuItem>
       </Select>
     </div>
   );

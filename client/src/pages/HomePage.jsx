@@ -7,42 +7,55 @@ import "./HomePage.css";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import AddApplicationModal from "../components/AddApplicationModal";
+import { useApplications } from "../context/ApplicationContext";
 
 function HomePage() {
   const { user, logout } = useAuth();
-  const [applications, setApplications] = useState([]);
+  const { applications, fetchApplications, addApplication, deleteApplication } = useApplications();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-
-  useEffect(() => {
-    getUserApplications();
-  }, []);
+    function handleClose() {
+    setModalIsOpen(false);
+  }
 
   const handleDelete = async (id) => {
     try {
-      await apiClient.delete(`/applications/${id}`);
-      setApplications((prev) => prev.filter((app) => app.id !== id));
-    } catch (err) {
-      console.log("Error deleting the application:", err);
-    }
-  };
-  const getUserApplications = async () => {
-    try {
-      const userApplications = await apiClient.get("/applications/");
-      setApplications(userApplications.data.applications);
-      console.log(userApplications.data);
+      await deleteApplication(id);
     } catch (err) {
       console.log(err.response?.data);
       console.log(err);
     }
   };
 
-  function handleOpen(){
+  const handleAddition = async(event, formData) => {
+    try{
+      event.preventDefault();           
+      await addApplication(formData);
+      handleClose();
+    }catch(err){
+      console.log(err.response?.data);
+      console.log(err);
+      
+      
+    }
+  };
+
+
+  const getUserApplications = async () => {
+    try {
+      await fetchApplications();
+    } catch (err) {
+      console.log(err.response?.data);
+      console.log(err);
+    }
+  };
+
+  function handleOpen() {
     setModalIsOpen(true);
   }
 
-  function handleClose(){
+  function handleClose() {
     setModalIsOpen(false);
   }
 
@@ -55,7 +68,7 @@ function HomePage() {
         <Button variant="contained" className="add-button" onClick={handleOpen}>
           <AddIcon /> Προσθηκη
         </Button>
-        <AddApplicationModal isOpen={modalIsOpen} onClose={handleClose} />
+        <AddApplicationModal isOpen={modalIsOpen} onClose={handleClose} onSubmit={handleAddition}/>
       </div>
       <StatusBoard applications={applications} onDelete={handleDelete} />
     </div>
