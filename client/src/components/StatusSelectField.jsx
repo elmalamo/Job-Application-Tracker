@@ -13,12 +13,10 @@ function StatusSelectField(props) {
         id="status-select"
         value={props.value}
         label="Status"
-        onChange={(event) =>
-          props.onChange({ ...props.formData, status: event.target.value })
-        }
+        onChange={(event) => props.onChange(event.target.value)}
       >
         <MenuItem value={"Applied"}>Applied</MenuItem>
-        <MenuItem value={"Inteview"}>Interview</MenuItem>
+        <MenuItem value={"Interview"}>Interview</MenuItem>
         <MenuItem value={"Offer"}>Offer</MenuItem>
         <MenuItem value={"Rejected"}>Rejected</MenuItem>
       </Select>
