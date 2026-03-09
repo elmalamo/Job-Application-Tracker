@@ -6,9 +6,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import StatusSelectField from "./StatusSelectField";
 import WorkModeSelectField from "./WorkModeSelectField";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
 import "./ApplicationForm.css";
-import { FormLabel } from "@mui/material";
+import NotesField from "./NotesField";
 
 function ApplicationForm(props) {
   return (
@@ -72,21 +71,12 @@ function ApplicationForm(props) {
             props.changeValues({ ...props.formData, workMode: newValue })
           }
         />
-        <div className="textarea-container">
-          <FormLabel>Παρατηρήσεις</FormLabel>
-          <TextareaAutosize
-            minRows={4}
-            placeholder="Σημειώστε τις παρατηρήσεις σας εδώ"
-            style={{ width: "100%" }}
-            value={props.formData.notes}
-            onChange={(event) =>
-              props.changeValues({
-                ...props.formData,
-                notes: event.target.value,
-              })
-            }
-          />
-        </div>
+        <NotesField
+          notes={props.formData.notes}
+          onChange={(event) =>
+            props.changeValues({...props.formData, notes: event.target.value  })
+          }
+        />
       </div>
     </LocalizationProvider>
   );
