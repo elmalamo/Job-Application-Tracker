@@ -6,9 +6,10 @@ import ApplicationForm from "./ApplicationForm";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import dayjs from "dayjs";
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 function ApplicationModal(props) {
-
   const isEditing = !!props.card?.id;
 
   const [formData, setFormData] = useState({
@@ -24,8 +25,22 @@ function ApplicationModal(props) {
   return (
     <Dialog open={true} onClose={props.onClose} fullWidth maxWidth="sm">
       <form onSubmit={(event) => props.onSubmit(event, formData)}>
-        <DialogTitle>{isEditing ? "Επεξεργασία της αίτησης" : "Προσθήκη νέας αίτησης"}</DialogTitle>
-        <DialogContent>
+        <DialogTitle>
+          {isEditing ? "Επεξεργασία της αίτησης" : "Προσθήκη νέας αίτησης"}
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={props.onClose}
+          sx={(theme) => ({
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: theme.palette.grey[500],
+          })}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
           <ApplicationForm formData={formData} changeValues={setFormData} />
         </DialogContent>
         <DialogActions>
