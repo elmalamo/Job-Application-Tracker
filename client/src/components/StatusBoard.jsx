@@ -15,8 +15,8 @@ function StatusBoard(props) {
                     key={status}
                     status={status}
                     applications={props.applications.filter(application => application.status === status)}
-                    onDelete={props.onDelete}
-                
+                    onDelete={props.onDelete}     
+                    onEdit={props.onEdit}           
                 />
             ))}
         </div>

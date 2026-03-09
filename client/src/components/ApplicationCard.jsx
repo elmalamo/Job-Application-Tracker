@@ -11,7 +11,7 @@ import "./ApplicationCard.css";
 
 function ApplicationCard(props) {
   return (
-    <Card className="card-box">
+    <Card className="card-box" onClick={()=>{props.clickedCard(props.app)}}>
       <CardContent>
         <h3 className="application-preview">{props.app.position}</h3>
         <p className="application-preview">στη</p>
@@ -27,7 +27,10 @@ function ApplicationCard(props) {
             },
           }}
           aria-label="delete"
-          onClick={() => props.onDelete(props.app.id)}
+          onClick={(event) =>{
+            event.stopPropagation(); 
+            props.onDelete(props.app.id)
+          }}
         >
           <DeleteForeverIcon />
         </IconButton>

@@ -5,6 +5,12 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 function WorkModeSelectField(props) {
+
+  const selectValues = {
+    onsite: "Δια Ζώσης",
+    remote: "Εξ Αποστάσεως",
+    hybrid: "Υβριδικό"
+  }
   return (
     <div>
       <InputLabel id="demo-simple-select-label">Τρόπος εργασίας</InputLabel>
@@ -15,9 +21,9 @@ function WorkModeSelectField(props) {
         label="Work Mode"
         onChange={(event) => props.onChange(event.target.value)}
       >
-        <MenuItem value={"onsite"}>Onsite</MenuItem>
-        <MenuItem value={"remote"}>Remote</MenuItem>
-        <MenuItem value={"hybrid"}>Hybrid</MenuItem>
+        <MenuItem value={"onsite"}>{selectValues["onsite"]}</MenuItem>
+        <MenuItem value={"remote"}>{selectValues["remote"]}</MenuItem>
+        <MenuItem value={"hybrid"}>{selectValues["hybrid"]}</MenuItem>
       </Select>
     </div>
   );

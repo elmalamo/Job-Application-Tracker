@@ -21,7 +21,6 @@ export const ApplicationProvider = ({ children }) => {
 
   const addApplication = async (formData) => {
     try {
-
       //change the format of the date picker value
       const payload = {
         ...formData,
@@ -34,11 +33,28 @@ export const ApplicationProvider = ({ children }) => {
       fetchApplications();
     } catch (err) {
       console.log("status:", err.response?.status);
-      console.log("data:", err.response?.data); // ← what does this say?
+      console.log("data:", err.response?.data);
       console.log("headers:", err.response?.headers);
     }
   };
 
+  const patchApplication = async (id, formData) => {
+    try {
+      //change the format of the date picker value
+      const payload = {
+        ...formData,
+        appliedAt: formData.appliedAt?.format("YYYY-MM-DD"),
+      };
+      await apiClient.patch(`/applications/${id}`, payload);
+
+      //refresh after editing
+      fetchApplications();
+    } catch (error) {
+      console.log("status:", err.response?.status);
+      console.log("data:", err.response?.data);
+      console.log("headers:", err.response?.headers);
+    }
+  };
   const deleteApplication = async (id) => {
     await apiClient.delete(`/applications/${id}`);
     setApplications((prev) => prev.filter((app) => app.id !== id));
@@ -50,6 +66,7 @@ export const ApplicationProvider = ({ children }) => {
         applications,
         fetchApplications,
         addApplication,
+        patchApplication,
         deleteApplication,
       }}
     >

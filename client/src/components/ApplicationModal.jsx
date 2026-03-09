@@ -7,35 +7,33 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import dayjs from "dayjs";
 
+function ApplicationModal(props) {
 
-
-function AddApplicationModal(props) {
-
-
+  const isEditing = !!props.card?.id;
 
   const [formData, setFormData] = useState({
-    position: "",
-    company: "",
-    location: "",
-    workMode: "onsite",
-    appliedAt: dayjs(),
-    status: "Applied",
-    notes: ""
+    position: props.card?.position ?? "",
+    company: props.card?.company ?? "",
+    location: props.card?.location ?? "",
+    workMode: props.card?.work_mode ?? "onsite",
+    appliedAt: props.card?.applied_at ? dayjs(props.card.applied_at) : dayjs(),
+    status: props.card?.status ?? "Applied",
+    notes: props.card?.notes ?? "",
   });
 
   return (
-    <Dialog open={props.isOpen} onClose={props.onClose} fullWidth maxWidth="sm">
+    <Dialog open={true} onClose={props.onClose} fullWidth maxWidth="sm">
       <form onSubmit={(event) => props.onSubmit(event, formData)}>
-        <DialogTitle>Προθήκη νέας αίτησης</DialogTitle>
+        <DialogTitle>{isEditing ? "Επεξεργασία της αίτησης" : "Προσθήκη νέας αίτησης"}</DialogTitle>
         <DialogContent>
-          <ApplicationForm formData={formData} changeValues={setFormData}/>
+          <ApplicationForm formData={formData} changeValues={setFormData} />
         </DialogContent>
         <DialogActions>
           <Button onClick={props.onClose} color="error" variant="outlined">
             Ακυρωση
           </Button>
           <Button type="submit" variant="contained">
-            Προσθηκη
+            {isEditing ? "Αποθηκευση" : "Προσθηκη"}
           </Button>
         </DialogActions>
       </form>
@@ -43,4 +41,4 @@ function AddApplicationModal(props) {
   );
 }
 
-export default AddApplicationModal;
+export default ApplicationModal;

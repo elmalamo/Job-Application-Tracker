@@ -5,6 +5,13 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 function StatusSelectField(props) {
+
+const statusLabels = {
+  Applied: "Υποβλήθηκε",
+  Interview: "Συνέντευξη",
+  Offer: "Προσφορά",
+  Rejected: "Απορρίφθηκε"
+};
   return (
     <div>
       <InputLabel id="demo-simple-select-label">Κατάσταση αίτησης</InputLabel>
@@ -15,10 +22,10 @@ function StatusSelectField(props) {
         label="Status"
         onChange={(event) => props.onChange(event.target.value)}
       >
-        <MenuItem value={"Applied"}>Applied</MenuItem>
-        <MenuItem value={"Interview"}>Interview</MenuItem>
-        <MenuItem value={"Offer"}>Offer</MenuItem>
-        <MenuItem value={"Rejected"}>Rejected</MenuItem>
+        <MenuItem value={"Applied"}>{statusLabels["Applied"]}</MenuItem>
+        <MenuItem value={"Interview"}>{statusLabels["Interview"]}</MenuItem>
+        <MenuItem value={"Offer"}>{statusLabels["Offer"]}</MenuItem>
+        <MenuItem value={"Rejected"}>{statusLabels["Rejected"]}</MenuItem>
       </Select>
     </div>
   );

@@ -6,6 +6,12 @@
     margin-bottom: 20px;
 }
 
+
+.card-box:hover{
+    cursor: pointer;
+}
+
+
 .application-preview{
     margin: 0;
     text-align: left;
