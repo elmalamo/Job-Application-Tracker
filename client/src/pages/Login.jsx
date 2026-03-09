@@ -8,6 +8,8 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 function Login() {
   const { user, error, login } = useAuth();
@@ -15,6 +17,11 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -25,7 +32,34 @@ function Login() {
       navigate("/", { replace: true }); // ή "/"
     } catch (err) {
       //else catch the error
-      console.log("Login failed", err);
+      // console.log("Login failed", err);
+      const status = err.response?.status;
+
+      if (status === 400) {
+        setSnackbar({
+          open: true,
+          message: "Παρακαλώ συμπληρώστε το email και τον κωδικό πρόσβασης!",
+          severity: "error",
+        });
+      } else if (status === 404) {
+        setSnackbar({
+          open: true,
+          message: "Ο χρήστης δεν υπάρχει!",
+          severity: "error",
+        });
+      } else if (status === 401) {
+        setSnackbar({
+          open: true,
+          message: "Λάθος κωδικός πρόσβασης!",
+          severity: "error",
+        });
+      } else {
+        setSnackbar({
+          open: true,
+          message: "Κάτι πήγε στραβά!",
+          severity: "error",
+        });
+      }
     }
   };
 
@@ -78,6 +112,16 @@ function Login() {
           </p>
         </form>
       </div>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity={snackbar.severity} variant="filled">
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
