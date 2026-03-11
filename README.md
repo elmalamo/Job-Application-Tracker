@@ -133,11 +133,6 @@ Base URL: `http://localhost:3000/api`
 | PATCH  | `/:id`   | Update an application          | ✅            |
 | DELETE | `/:id`   | Delete an application          | ✅            |
 
-## 📄 License
-
-[MIT](LICENSE)
-
----
 
 ## 👤 Author
 
