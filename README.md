@@ -76,3 +76,70 @@ npm run dev
 
 - Frontend → `http://localhost:5173`
 - Backend → `http://localhost:3000`
+
+
+
+
+## 🔐 Environment Variables
+
+### `server/.env`
+```env
+# Database
+DB_USER=postgres
+DB_HOST=localhost
+DB_NAME=job-application-tracker
+DB_PASSWORD=your_postgres_password
+DB_PORT=5432
+
+# Ports
+SERVER_PORT=3000
+CLIENT_PORT=5173
+
+# Auth
+JWT_SECRET=your_jwt_secret_key
+SALT_ROUNDS=10
+```
+
+### `client/.env`
+```env
+# Ports
+SERVER_PORT=3000
+CLIENT_PORT=5173
+
+# API
+VITE_API_URL=http://localhost:3000/api
+```
+
+
+## 📡 API Endpoints
+
+Base URL: `http://localhost:3000/api`
+
+### Auth `/api/auth`
+
+| Method | Endpoint  | Description              | Auth Required |
+|--------|-----------|--------------------------|---------------|
+| POST   | `/register` | Register a new user    | ❌            |
+| POST   | `/login`    | Login and receive token | ❌            |
+| POST   | `/logout`   | Logout current user     | ❌            |
+| GET    | `/me`       | Get logged in user      | ✅            |
+
+### Applications `/api/applications`
+
+| Method | Endpoint | Description                    | Auth Required |
+|--------|----------|--------------------------------|---------------|
+| GET    | `/`      | Get all user applications      | ✅            |
+| POST   | `/`      | Create a new application       | ✅            |
+| PATCH  | `/:id`   | Update an application          | ✅            |
+| DELETE | `/:id`   | Delete an application          | ✅            |
+
+## 📄 License
+
+[MIT](LICENSE)
+
+---
+
+## 👤 Author
+
+**Konstantinos Malamas**  
+GitHub: [@elmalamo](https://github.com/elmalamo)
