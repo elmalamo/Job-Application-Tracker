@@ -17,3 +17,29 @@
 - Track status per application: **Applied → Interview → Offer → Rejected**
 - Log the date applied and any follow-up notes
 - Dashboard summary of your application pipeline
+
+
+## Tech Stack
+
+| Layer      | Technology                        |
+|------------|-----------------------------------|
+| Frontend   | React 19, React Router            |
+| Backend    | Node.js v22, Express 5            |
+| Database   | PostgreSQL                        |
+| Styling    | CSS, Material UI                  |
+
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v22+
+- npm v11+
+- A running [PostgreSQL](https://www.postgresql.org/) instance
+
+
+#   ## 1. Clone the repo
+
+```bash
+git clone https://github.com/elmalamo/Job-Application-Tracker.git
+cd Job-Application-Tracker
