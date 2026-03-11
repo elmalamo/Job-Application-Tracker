@@ -38,7 +38,7 @@
 - A running [PostgreSQL](https://www.postgresql.org/) instance
 
 
-#   ## 1. Clone the repo
+### 1. Clone the repo
 
 ```bash
 git clone https://github.com/elmalamo/Job-Application-Tracker.git
