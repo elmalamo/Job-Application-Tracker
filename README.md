@@ -6,7 +6,6 @@
 ![App Screenshot](./screenshots/add_application.png)
 ![App Screenshot](./screenshots/home_page.png)
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-22.14.0-green)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB)](https://reactjs.org/)
 [![Express](https://img.shields.io/badge/Express-5.2.1-000000)](https://expressjs.com/)
