@@ -43,3 +43,36 @@
 ```bash
 git clone https://github.com/elmalamo/Job-Application-Tracker.git
 cd Job-Application-Tracker
+
+### 2. Set up environment variables
+```bash
+# In /server
+cp server/.env.example server/.env
+
+# In /client
+cp client/.env.example client/.env
+```
+
+Fill in the values in both `.env` files — see [Environment Variables](#-environment-variables) below.
+
+### 3. Install dependencies
+
+```bash
+# Backend
+cd server && npm install
+
+# Frontend
+cd ../client && npm install
+```
+
+### 4. Run the app
+```bash
+# Start backend (from /server)
+nodemon server.js
+
+# Start frontend (from /client, new terminal)
+npm run dev
+```
+
+- Frontend → `http://localhost:5173`
+- Backend → `http://localhost:3000`
