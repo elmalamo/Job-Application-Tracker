@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const createApplication = async (req, res) => {
+  
   const userId = req.user.id;
   const company = req.body.company;
   const position = req.body.position;
@@ -15,7 +16,7 @@ export const createApplication = async (req, res) => {
   const appliedAt = req.body.appliedAt;
 
   try {
-    if (!company || !position || !location || !status || !appliedAt) {
+    if (!company || !position || !workMode || !status || !appliedAt) {
       return res.status(400).json({
         message: "Missing required fields!",
       });
@@ -35,6 +36,7 @@ export const createApplication = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       message: "Server error!",
+      error: err
     });
   }
 };
@@ -131,7 +133,6 @@ export const getUserApplications = async (req, res) => {
 
   try {
     const result = await pool.query(
-        //TODO Fix the applied_At date format in json
       `SELECT id, company, position, location, work_mode, status, notes, applied_at::text 
       FROM applications
       WHERE user_id=$1 
@@ -149,8 +150,3 @@ export const getUserApplications = async (req, res) => {
     });
   }
 };
-
-
-// TODO Applications pagination ? no need theyh will be in columns
-// TODO FIlters by role, applied date?
-// TODO README 

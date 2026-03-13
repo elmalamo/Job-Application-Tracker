@@ -68,7 +68,7 @@ export const login = async (req, res) => {
 
     // email exists
     const user = userExists.rows[0];
-    console.log(user);
+    
 
     //compare passwords
 
