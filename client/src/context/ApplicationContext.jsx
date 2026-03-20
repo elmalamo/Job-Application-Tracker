@@ -19,6 +19,7 @@ export const ApplicationProvider = ({ children }) => {
 
   useEffect(() => {
     if(!user){
+      setApplications([]);
       return;
     }
     fetchApplications();

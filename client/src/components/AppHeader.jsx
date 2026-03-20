@@ -28,7 +28,7 @@ function AppHeader() {
 
   const handleLogout = async () => {
     try {
-      logout();
+      await logout();
       navigate("/login");
     } catch (err) {
       console.log("Erro while logout", err);
