@@ -1,29 +1,30 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import { useAuth } from "./auth/AuthContext";
+import { lazy, Suspense } from 'react'
 
 import AuthLayout from "./layouts/AuthLayout";
+import AppLayout from "./layouts/AppLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import HomePage from "./pages/HomePage";
-import AppLayout from "./layouts/AppLayout";
+
+const HomePage = lazy(() => import('./pages/HomePage'))
 
 function App() {
   return (
-    <Routes>
-      <Route element={<AuthLayout />}>
-        {/* public routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Route>
-
-      {/* protected routes(it gets in protectedroute first) */}
-      <Route element={<ProtectedRoute />}>
-        <Route element={<AppLayout />}>
-          <Route path="/" element={<HomePage />} />
+    <Suspense fallback={null}>
+      <Routes>
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Route>
-      </Route>
-    </Routes>
+
+        <Route element={<ProtectedRoute />}>
+          <Route element={<AppLayout />}>
+            <Route path="/" element={<HomePage />} />
+          </Route>
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

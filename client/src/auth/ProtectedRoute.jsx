@@ -1,21 +1,22 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "./AuthContext";
-import Loader from "../components/Loader";
 
 const ProtectedRoute = ({ redirectPath = "/login" }) => {
-  const { user, loading, isLoggingOut } = useAuth();
+  const { user, loading } = useAuth();
 
-  //show loader if auth state is loading
-  if (loading || isLoggingOut) {
-    return <Loader />;
+  if (loading) {
+    console.log('BLOCKING - loading:', loading, 'isLoggingOut:', isLoggingOut);
+    return null;
   }
 
   //if user doesnt exist redirect to login page
   if (!user) {
+    console.log('NO USER - redirecting to login')
     return <Navigate to={redirectPath} replace />;
   }
 
   //if user exists render children 
+  console.log('USER EXISTS - rendering outlet')
   return <Outlet />;
 };
 

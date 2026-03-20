@@ -14,4 +14,16 @@ export default defineConfig({
       '@mui/x-date-pickers',
     ],
   },
+    build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'mui-core': ['@mui/material', '@emotion/react', '@emotion/styled'],
+          'mui-icons': ['@mui/icons-material'],
+          'mui-pickers': ['@mui/x-date-pickers'],
+        }
+      }
+    }
+  },
 })

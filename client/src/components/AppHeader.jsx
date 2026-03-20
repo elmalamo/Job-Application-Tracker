@@ -31,52 +31,57 @@ function AppHeader() {
       await logout();
       navigate("/login");
     } catch (err) {
-      console.log("Erro while logout", err);
+      console.log("Error while logout", err);
     }
   };
 
-
   return (
-      <AppBar position="sticky" className="header" sx={{backgroundColor: "#0f2f2e"}}>
-        <Toolbar sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%"
-        }}>
-          <Typography variant="h5" component="div" sx={{paddingLeft: "20px"}}>
-            ElMalamo's Job Application Tracker
-          </Typography>
+    <AppBar
+      position="sticky"
+      className="header"
+      sx={{ backgroundColor: "#0f2f2e" }}
+    >
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
+        <Typography variant="h5" component="div" sx={{ paddingLeft: "20px" }}>
+          ElMalamo's Job Application Tracker
+        </Typography>
 
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
-            sx={{paddingRight: "20px"}}
-          >
-            <AccountCircle />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleLogout}>Αποσύνδεση</MenuItem>
-          </Menu>
-        </Toolbar>
-      </AppBar>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleMenu}
+          color="inherit"
+          sx={{ paddingRight: "20px" }}
+        >
+          <AccountCircle />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleLogout}>Αποσύνδεση</MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
   );
 }
 

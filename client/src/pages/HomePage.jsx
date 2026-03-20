@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, lazy } from "react";
 import { useAuth } from "../auth/AuthContext";
 import StatusBoard from "../components/StatusBoard";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import ApplicationModal from "../components/ApplicationModal";
 import { useApplications } from "../context/ApplicationContext";
 import "./HomePage.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+
+const ApplicationModal = lazy(() => import('../components/ApplicationModal'));
+
 
 function HomePage() {
   const { user } = useAuth();

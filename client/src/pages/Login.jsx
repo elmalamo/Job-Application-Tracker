@@ -29,7 +29,7 @@ function Login() {
     try {
       await login({ email, password });
       //if login successfull
-      navigate("/", { replace: true }); // ή "/"
+      // navigate("/", { replace: true });
     } catch (err) {
       //else catch the error
       // console.log("Login failed", err);
@@ -68,7 +68,7 @@ function Login() {
     if (user) {
       navigate("/", { replace: true });
     }
-  });
+  }, [user]);
 
   return (
     <div className="container">
