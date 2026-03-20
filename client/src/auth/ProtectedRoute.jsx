@@ -3,10 +3,10 @@ import { useAuth } from "./AuthContext";
 import Loader from "../components/Loader";
 
 const ProtectedRoute = ({ redirectPath = "/login" }) => {
-  const { user, loading } = useAuth();
+  const { user, loading, isLoggingOut } = useAuth();
 
   //show loader if auth state is loading
-  if (loading) {
+  if (loading || isLoggingOut) {
     return <Loader />;
   }
 

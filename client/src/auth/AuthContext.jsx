@@ -6,6 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
 
   //check session on app load
   const checkAuth = async () => {
@@ -35,11 +36,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  //logout function
-  const logout = async () => {
-    await apiClient.post("/auth/logout");
+ const logout = async () => {
+  try {
+    setIsLoggingOut(true);
+    await apiClient.post("/auth/logout")
+  } catch (err) {
+    console.log("Logout error:", err)
+  } finally {
     setUser(null);
-  };
+    setIsLoggingOut(false);
+  }
+}
 
   //register function
   const register = async (formData) => {
@@ -53,7 +60,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, register, checkAuth }}>
+    <AuthContext.Provider value={{ user, loading, isLoggingOut, login, logout, register, checkAuth }}>
       {children}
     </AuthContext.Provider>
   );
