@@ -1,10 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import apiClient from "../api/apiClient";
+import { useAuth } from "../auth/AuthContext";
 
 const ApplicationContext = createContext();
 
 export const ApplicationProvider = ({ children }) => {
   const [applications, setApplications] = useState([]);
+  const {user} = useAuth();
 
   const fetchApplications = async () => {
     try {
@@ -16,8 +18,11 @@ export const ApplicationProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if(!user){
+      return;
+    }
     fetchApplications();
-  }, []);
+  }, [user]);
 
   const addApplication = async (formData) => {
     try {
@@ -50,9 +55,9 @@ export const ApplicationProvider = ({ children }) => {
       //refresh after editing
       fetchApplications();
     } catch (error) {
-      console.log("status:", err.response?.status);
-      console.log("data:", err.response?.data);
-      console.log("headers:", err.response?.headers);
+      console.log("status:", error.response?.status);
+      console.log("data:", error.response?.data);
+      console.log("headers:", error.response?.headers);
     }
   };
   const deleteApplication = async (id) => {
