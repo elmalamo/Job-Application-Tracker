@@ -7,8 +7,7 @@ import { useApplications } from "../context/ApplicationContext";
 import "./HomePage.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-
-const ApplicationModal = lazy(() => import('../components/ApplicationModal'));
+import ApplicationModal from "../components/ApplicationModal";
 
 
 function HomePage() {
