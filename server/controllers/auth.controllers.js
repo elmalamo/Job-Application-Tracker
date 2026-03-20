@@ -68,7 +68,6 @@ export const login = async (req, res) => {
 
     // email exists
     const user = userExists.rows[0];
-    
 
     //compare passwords
 
@@ -91,6 +90,12 @@ export const login = async (req, res) => {
 
       res.json({
         message: "Login successful",
+        user: {
+          id: user.id,
+          email: user.email,
+          first_name: user.first_name,
+          last_name: user.last_name,
+        },
       });
     } else {
       return res.status(401).json({
@@ -116,30 +121,27 @@ export const logout = (req, res) => {
   });
 };
 
-
 export const getLoggedInUser = async (req, res) => {
-
   const userId = req.user.id;
 
-  try{
-
-    const user = await pool.query("SELECT id, first_name, last_name, email FROM users WHERE id=$1",[userId]);
+  try {
+    const user = await pool.query(
+      "SELECT id, first_name, last_name, email FROM users WHERE id=$1",
+      [userId],
+    );
 
     //check if user exists
-    if(user.rows.length === 0){
+    if (user.rows.length === 0) {
       return res.status(404).json({
-        message: "User not found!"
+        message: "User not found!",
       });
     }
 
     //if exists get user info
     res.json(user.rows[0]);
-
-
-  }catch(err){
+  } catch (err) {
     res.status(500).json({
-      message: "Server error!"
+      message: "Server error!",
     });
   }
-
 };

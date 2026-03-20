@@ -6,14 +6,23 @@ const ApplicationContext = createContext();
 
 export const ApplicationProvider = ({ children }) => {
   const [applications, setApplications] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   const {user} = useAuth();
 
   const fetchApplications = async () => {
+    console.time('fetchApplications');
+    if(isFetching){
+      return;
+    }
     try {
+      setIsFetching(true);
       const res = await apiClient.get("/applications");
       setApplications(res.data.applications);
     } catch (err) {
       console.log(err);
+    }finally{
+      setIsFetching(false);
+      console.timeEnd('fetchApplications');
     }
   };
 

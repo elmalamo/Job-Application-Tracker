@@ -13,8 +13,7 @@ const ApplicationModal = lazy(() => import('../components/ApplicationModal'));
 
 function HomePage() {
   const { user } = useAuth();
-  const { applications, addApplication, patchApplication, deleteApplication } =
-    useApplications();
+  const { applications, addApplication, patchApplication, deleteApplication } = useApplications();
 
   // null = closed, {} = add mode, { ...card } = edit mode
   const [modalData, setModalData] = useState(null);

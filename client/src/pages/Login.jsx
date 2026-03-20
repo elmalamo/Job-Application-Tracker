@@ -10,9 +10,11 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import { useApplications } from "../context/ApplicationContext";
 
 function Login() {
   const { user, error, login } = useAuth();
+  const { fetchApplications } = useApplications();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,7 +31,7 @@ function Login() {
     try {
       await login({ email, password });
       //if login successfull
-      // navigate("/", { replace: true });
+      fetchApplications();  
     } catch (err) {
       //else catch the error
       // console.log("Login failed", err);
@@ -62,6 +64,11 @@ function Login() {
       }
     }
   };
+
+  // Prefetch on mount — runs as soon as login page loads
+  useEffect(() => {
+    import("../pages/HomePage");
+  }, []);
 
   //dont let user go back to login page after successful login
   useEffect(() => {

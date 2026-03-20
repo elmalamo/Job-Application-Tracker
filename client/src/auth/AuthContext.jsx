@@ -26,8 +26,9 @@ export const AuthProvider = ({ children }) => {
   //login function
   const login = async (credentials) => {
     try {
-      await apiClient.post("/auth/login", credentials);
-      await checkAuth();
+      const res = await apiClient.post("/auth/login", credentials);
+      setUser(res.data.user);
+      // await checkAuth();
       return true;
     } catch (err) {
       console.log("Login failed:", err.response?.data);
