@@ -1,0 +1,11 @@
+.search-field {
+    background-color: antiquewhite;
+    font-size: 10px;
+    color: black
+}
+
+
+/* Chrome, Edge, Safari */
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}

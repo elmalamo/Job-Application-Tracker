@@ -8,11 +8,12 @@ import "./HomePage.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import ApplicationModal from "../components/ApplicationModal";
-
+import SearchField from "../components/SearchField";
 
 function HomePage() {
   const { user } = useAuth();
-  const { applications, addApplication, patchApplication, deleteApplication } = useApplications();
+  const { applications, addApplication, patchApplication, deleteApplication } =
+    useApplications();
 
   // null = closed, {} = add mode, { ...card } = edit mode
   const [modalData, setModalData] = useState(null);
@@ -25,6 +26,12 @@ function HomePage() {
     message: "",
     severity: "success",
   });
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const onChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   const handleSubmit = async (event, formData) => {
     try {
@@ -79,6 +86,7 @@ function HomePage() {
         <h1 className="heading">
           Οι αιτήσεις σου, {user.first_name} {user.last_name}!
         </h1>
+        <SearchField searchTerm={searchTerm} onChange={onChange} />
         <Button variant="contained" className="add-button" onClick={openAdd}>
           <AddIcon /> Προσθηκη
         </Button>
@@ -92,7 +100,9 @@ function HomePage() {
         )}
       </div>
       <StatusBoard
-        applications={applications}
+        applications={applications.filter((application) =>
+          application.company.toLowerCase().includes(searchTerm.toLowerCase()) || application.position.toLowerCase().includes(searchTerm.toLowerCase())
+        )}
         onDelete={handleDelete}
         onEdit={openEdit}
       />
