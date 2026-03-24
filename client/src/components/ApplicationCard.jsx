@@ -12,12 +12,12 @@ import "./ApplicationCard.css";
 function ApplicationCard(props) {
   return (
     <Card className="card-box" onClick={()=>{props.clickedCard(props.app)}}>
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1 , paddingBottom: 0.05, paddingTop: 1}}>
         <h3 className="application-preview">{props.app.position}</h3>
         <p className="application-preview">στη</p>
         <h3 className="application-preview">{props.app.company}</h3>
       </CardContent>
-      <CardActions sx={{ justifyContent: "flex-end" }}>
+      <CardActions sx={{ justifyContent: "flex-end", p: 0.5}}>
         <IconButton
           sx={{
             color: "#999",
