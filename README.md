@@ -2,6 +2,17 @@
 
 >  A full-stack web app to organize and track your job applications — so nothing falls through the cracks.
 
+## 🚀 Live Demo
+
+[job-application-tracker-theta-nine.vercel.app](https://job-application-tracker-theta-nine.vercel.app)
+
+## 🔑 Test Credentials
+
+| Field    | Value              |
+|----------|--------------------|
+| Email    | test@email.com      |
+| Password | 12345!@#           |
+
 ![App Screenshot](./screenshots/login_page.png)
 ![App Screenshot](./screenshots/add_application.png)
 ![App Screenshot](./screenshots/home_page.png)
