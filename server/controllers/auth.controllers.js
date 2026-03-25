@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const isProduction = process.env.NODE_ENV === "production";
+
 export const register = async (req, res) => {
   const saltRounds = Number(process.env.SALT_ROUNDS);
 
@@ -40,7 +42,7 @@ export const register = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       message: "Server error!",
-      error: err.message
+      error: err.message,
     });
   }
 };
@@ -85,8 +87,8 @@ export const login = async (req, res) => {
       //send cookie
       res.cookie("token", token, {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "lax",
       });
 
       res.json({
@@ -113,8 +115,8 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "lax",
-    secure: false,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
   });
 
   res.json({
