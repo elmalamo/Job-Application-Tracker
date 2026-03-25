@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: `http://localhost:${process.env.CLIENT_PORT}`,
+    origin: process.env.CLIENT_URL || `http://localhost:${process.env.CLIENT_PORT}`,
     credentials: true,
   }),
 );
