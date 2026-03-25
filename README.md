@@ -5,6 +5,8 @@
 ![App Screenshot](./screenshots/login_page.png)
 ![App Screenshot](./screenshots/add_application.png)
 ![App Screenshot](./screenshots/home_page.png)
+![App Screenshot](./screenshots/filter.png)
+
 
 [![Node.js](https://img.shields.io/badge/Node.js-22.14.0-green)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB)](https://reactjs.org/)
@@ -44,7 +46,7 @@ git clone https://github.com/elmalamo/Job-Application-Tracker.git
 cd Job-Application-Tracker
 
 ### 2. Set up environment variables
-```bash
+
 # In /server
 cp server/.env.example server/.env
 
@@ -66,10 +68,7 @@ cd ../client && npm install
 
 ### 4. Run the app
 ```bash
-# Start backend (from /server)
-nodemon server.js
-
-# Start frontend (from /client, new terminal)
+# Start both frontebd and backend (from root folder)
 npm run dev
 ```
 
