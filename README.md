@@ -6,7 +6,7 @@
 
 [job-application-tracker-theta-nine.vercel.app](https://job-application-tracker-theta-nine.vercel.app)
 
-## 🔑 Test Credentials
+### 🔑 Test Credentials
 
 | Field    | Value              |
 |----------|--------------------|
