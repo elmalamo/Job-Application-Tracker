@@ -34,7 +34,6 @@ function Login() {
       fetchApplications();  
     } catch (err) {
       //else catch the error
-      // console.log("Login failed", err);
       const status = err.response?.status;
 
       if (status === 400) {

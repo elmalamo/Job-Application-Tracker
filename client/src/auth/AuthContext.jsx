@@ -31,8 +31,7 @@ export const AuthProvider = ({ children }) => {
       // await checkAuth();
       return true;
     } catch (err) {
-      console.log("Login failed:", err.response?.data);
-      throw err; //in order to catch is in handleLogin
+      throw err; //in order to catch it in handleLogin
     }
   };
 
@@ -41,7 +40,6 @@ const logout = async () => {
     await apiClient.post("/auth/logout");
     setUser(null);
   } catch (err) {
-    console.log("Logout error:", err);
   }
 };
 
@@ -51,7 +49,6 @@ const logout = async () => {
       const res = await apiClient.post("/auth/register", formData);   
       return true;
     } catch (err) {
-      console.log("Register failed:", err.response?.data);
       throw err;
     }
   };
