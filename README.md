@@ -16,6 +16,7 @@
 
 - Add, edit, and delete job applications
 - Track status per application: **Applied → Interview → Offer → Rejected**
+- Implemented real-time search to dynamically filter applications by company or role
 - Log the date applied and any follow-up notes
 - Dashboard summary of your application pipeline
 
