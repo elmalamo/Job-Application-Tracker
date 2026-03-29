@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../auth/AuthContext";
-import InputField from "../components/InputField";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import InputField from "../components/InputField/InputField";
+import { useAuth } from "../context/AuthContext";
 import { useApplications } from "../context/ApplicationContext";
+import "./Login.css";
 
 function Login() {
   const { user, error, login } = useAuth();

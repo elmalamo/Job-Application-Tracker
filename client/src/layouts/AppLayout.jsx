@@ -1,8 +1,8 @@
-import AppHeader from "../components/AppHeader";
-import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
-
+import AppHeader from "../components/AppHeader/AppHeader";
+import Footer from "../components/Footer/Footer";
 import "./AuthLayout.css";
+
 
 function AppLayout(){
   return (

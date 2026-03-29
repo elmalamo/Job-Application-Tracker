@@ -7,13 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useAuth } from "../auth/AuthContext";
-import apiClient from "../api/apiClient";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./AppHeader.css";
 
 function AppHeader() {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const navigate = useNavigate();

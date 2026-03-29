@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import InputField from "./InputField";
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs from "dayjs";
-import StatusSelectField from "./StatusSelectField";
-import WorkModeSelectField from "./WorkModeSelectField";
+import InputField from "../InputField/InputField";
+import StatusSelectField from "../StatusSelectField/StatusSelectField";
+import WorkModeSelectField from "../WorkModeSelectField/WorkModeSelectField";
+import NotesField from "../NotesField/NotesField";
 import "./ApplicationForm.css";
-import NotesField from "./NotesField";
 
 function ApplicationForm(props) {
   return (

@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useAuth } from "../auth/AuthContext";
-import InputField from "../components/InputField";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import { Link, useNavigate } from "react-router-dom";
-
+import InputField from "../components/InputField/InputField";
+import { useAuth } from "../context/AuthContext";
 import "./Login.css";
 
 function Register(){

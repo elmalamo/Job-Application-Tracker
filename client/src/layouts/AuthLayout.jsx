@@ -1,5 +1,5 @@
-import AuthHeader from "../components/AuthHeader";
-import Footer from "../components/Footer";
+import AuthHeader from "../components/AuthHeader/AuthHeader";
+import Footer from "../components/Footer/Footer";
 import { Outlet } from "react-router-dom";
 
 import "./AuthLayout.css";

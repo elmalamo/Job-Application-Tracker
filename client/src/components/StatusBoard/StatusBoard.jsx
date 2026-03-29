@@ -1,5 +1,5 @@
 import React from "react";
-import BoardColumn from "./BoardColumn";
+import BoardColumn from "../BoardColumn/BoardColumn";
 
 import "./StatusBoard.css";
 

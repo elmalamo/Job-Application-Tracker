@@ -1,14 +1,14 @@
 import React, { useState, lazy } from "react";
-import { useAuth } from "../auth/AuthContext";
-import StatusBoard from "../components/StatusBoard";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import { useApplications } from "../context/ApplicationContext";
-import "./HomePage.css";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import ApplicationModal from "../components/ApplicationModal";
-import SearchField from "../components/SearchField";
+import StatusBoard from "../components/StatusBoard/StatusBoard";
+import ApplicationModal from "../components/ApplicationModal/ApplicationModal";
+import SearchField from "../components/SearchField/SearchField";
+import { useAuth } from "../context/AuthContext";
+import { useApplications } from "../context/ApplicationContext";
+import "./HomePage.css";
 
 function HomePage() {
   const { user } = useAuth();
